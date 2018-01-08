@@ -1182,6 +1182,29 @@ EfiBootManagerFreeLoadOptions (
   return EFI_SUCCESS;
 }
 
+STATIC
+BOOLEAN
+BmIsImageTypeSupported (
+  IN  UINT16    MachineType,
+  IN  UINT16    SubSystem
+  )
+{
+  EFI_STATUS                            Status;
+  EDKII_PECOFF_IMAGE_EMULATOR_PROTOCOL  *Emu;
+
+  if (EFI_IMAGE_MACHINE_TYPE_SUPPORTED (MachineType)) {
+    return TRUE;
+  }
+
+  Status = gBS->LocateProtocol (&gEdkiiPeCoffImageEmulatorProtocolGuid,
+                  NULL, (VOID **)&Emu);
+  if (EFI_ERROR (Status)) {
+    return FALSE;
+  }
+
+  return Emu->IsImageSupported (Emu, MachineType, SubSystem);
+}
+
 /**
   Return whether the PE header of the load option is valid or not.
 
@@ -1232,7 +1255,8 @@ BmIsLoadOptionPeHeaderValid (
       OptionalHeader = (EFI_IMAGE_OPTIONAL_HEADER32 *) &PeHeader->Pe32.OptionalHeader;
       if ((OptionalHeader->Magic == EFI_IMAGE_NT_OPTIONAL_HDR32_MAGIC || 
            OptionalHeader->Magic == EFI_IMAGE_NT_OPTIONAL_HDR64_MAGIC) &&
-          EFI_IMAGE_MACHINE_TYPE_SUPPORTED (PeHeader->Pe32.FileHeader.Machine)
+          BmIsImageTypeSupported (PeHeader->Pe32.FileHeader.Machine,
+                                  OptionalHeader->Subsystem)
           ) {
         //
         // Check the Subsystem:
