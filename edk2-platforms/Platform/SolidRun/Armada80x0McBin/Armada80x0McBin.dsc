@@ -51,6 +51,13 @@
   ArmadaBoardDescLib|Platform/SolidRun/Armada80x0McBin/ArmadaMcBinBoardDescLib/ArmadaMcBinBoardDescLib.inf
   NonDiscoverableInitLib|Platform/SolidRun/Armada80x0McBin/NonDiscoverableInitLib/NonDiscoverableInitLib.inf
 
+  #USB keyboard support
+  UefiUsbLib|MdePkg/Library/UefiUsbLib/UefiUsbLib.inf
+
+  #Boot logo
+  SafeIntLib|MdePkg/Library/BaseSafeIntLib/BaseSafeIntLib.inf
+  BmpSupportLib|MdeModulePkg/Library/BaseBmpSupportLib/BaseBmpSupportLib.inf
+
 ################################################################################
 #
 # Pcd Section - list of all EDK II PCD Entries defined by this Platform
@@ -173,11 +180,14 @@
   X86EmulatorPkg/X86Emulator.inf
 
   #USB keyboard support
-  UefiUsbLib|MdePkg/Library/UefiUsbLib/UefiUsbLib.inf
   MdeModulePkg/Bus/Usb/UsbKbDxe/UsbKbDxe.inf
 
   #Console preference selection
   EmbeddedPkg/Drivers/ConsolePrefDxe/ConsolePrefDxe.inf
+
+  #Boot logo
+  MdeModulePkg/Logo/LogoDxe.inf
+  MdeModulePkg/Universal/Acpi/BootGraphicsResourceTableDxe/BootGraphicsResourceTableDxe.inf
 
 [Components.AARCH64]
   Silicon/Marvell/Armada7k8k/AcpiTables/Armada80x0McBin/AcpiTables.inf

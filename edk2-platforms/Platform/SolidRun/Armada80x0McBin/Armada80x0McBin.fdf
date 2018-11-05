@@ -240,10 +240,14 @@ FvNameGuid         = 5eda4200-2c5f-43cb-9da3-0baf74b1b30c
   INF X86EmulatorPkg/X86Emulator.inf
 
   # USB keyboard support
-  INF MdeModulePkg/Bus/Usb/UsbKbDxe/UsbKbDxe.in
+  INF MdeModulePkg/Bus/Usb/UsbKbDxe/UsbKbDxe.inf
 
   # Console preference selection
   INF EmbeddedPkg/Drivers/ConsolePrefDxe/ConsolePrefDxe.inf
+
+  # Boot logo
+  INF MdeModulePkg/Logo/LogoDxe.inf
+  INF MdeModulePkg/Universal/Acpi/BootGraphicsResourceTableDxe/BootGraphicsResourceTableDxe.inf
 
 # PEI phase firmware volume
 [FV.FVMAIN_COMPACT]
