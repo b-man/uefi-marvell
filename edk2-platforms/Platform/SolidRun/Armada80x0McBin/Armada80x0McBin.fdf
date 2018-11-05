@@ -51,8 +51,8 @@ NumBlocks     = 0x400
 
 #
 # UEFI has trouble dealing with FVs that reside at physical address 0x0.
-# So instead, put a hardcoded 'jump to 0x1000' at offset 0x0, and put the
-# real FV at offset 0x1000
+# So instead, put a hardcoded 'jump to 0x2000' at offset 0x0, and put the
+# real FV at offset 0x2000
 #
 0x00000000|0x00002000
 DATA = {
