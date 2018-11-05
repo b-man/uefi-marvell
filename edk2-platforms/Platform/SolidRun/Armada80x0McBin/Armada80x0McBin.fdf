@@ -239,6 +239,12 @@ FvNameGuid         = 5eda4200-2c5f-43cb-9da3-0baf74b1b30c
   # x86 emulation for option roms
   INF X86EmulatorPkg/X86Emulator.inf
 
+  # USB keyboard support
+  INF MdeModulePkg/Bus/Usb/UsbKbDxe/UsbKbDxe.in
+
+  # Console preference selection
+  INF EmbeddedPkg/Drivers/ConsolePrefDxe/ConsolePrefDxe.inf
+
 # PEI phase firmware volume
 [FV.FVMAIN_COMPACT]
 FvAlignment        = 8

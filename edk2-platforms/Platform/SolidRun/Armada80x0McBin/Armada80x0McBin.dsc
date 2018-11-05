@@ -172,5 +172,12 @@
   #x86 emulation for option roms
   X86EmulatorPkg/X86Emulator.inf
 
+  #USB keyboard support
+  UefiUsbLib|MdePkg/Library/UefiUsbLib/UefiUsbLib.inf
+  MdeModulePkg/Bus/Usb/UsbKbDxe/UsbKbDxe.inf
+
+  #Console preference selection
+  EmbeddedPkg/Drivers/ConsolePrefDxe/ConsolePrefDxe.inf
+
 [Components.AARCH64]
   Silicon/Marvell/Armada7k8k/AcpiTables/Armada80x0McBin/AcpiTables.inf
