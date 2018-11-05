@@ -168,5 +168,9 @@
   gMarvellTokenSpaceGuid.PcdXenon8BitBusEnable|{ 0x1, 0x0 }
   gMarvellTokenSpaceGuid.PcdXenonSlowModeEnable|{ 0x1, 0x0 }
 
+[Components.common]
+  #x86 emulation for option roms
+  X86EmulatorPkg/X86Emulator.inf
+
 [Components.AARCH64]
   Silicon/Marvell/Armada7k8k/AcpiTables/Armada80x0McBin/AcpiTables.inf

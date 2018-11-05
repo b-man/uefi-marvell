@@ -1,3 +1,6 @@
 [submodule "CryptoPkg/Library/OpensslLib/openssl"]
 	path = CryptoPkg/Library/OpensslLib/openssl
 	url = https://github.com/openssl/openssl
+[submodule "X86EmulatorPkg"]
+	path = X86EmulatorPkg
+	url = https://github.com/b-man/X86EmulatorPkg
