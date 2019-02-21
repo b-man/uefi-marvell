@@ -298,7 +298,7 @@ SdMmcPciHcEnumerateDevice (
         //
         // Reset the specified slot of the SD/MMC Pci Host Controller
         //
-        Status = SdMmcHcReset (Private->PciIo, Slot);
+        Status = SdMmcHcReset (Private->PciIo, Slot, SD_MMC_HC_ALL_RESET_BIT | SD_MMC_HC_CMD_RESET_BIT | SD_MMC_HC_DATA_RESET_BIT);
         if (EFI_ERROR (Status)) {
           continue;
         }
@@ -688,6 +688,10 @@ SdMmcPciHcDriverBindingStart (
     return EFI_D_ERROR;
   }
 
+  SdMmcHcReset (Private->PciIo, Slot, SD_MMC_HC_ALL_RESET_BIT);
+
+  SdMmcHcSetBusWidth(PciIo, Slot, 1);
+
   //
   // Perform Xenon-specific init sequence
   //
@@ -939,6 +943,8 @@ SdMmcPciHcDriverBindingStop (
   ASSERT_EFI_ERROR (Status);
 
   FreePool (Private);
+
+  XenonIdx = 0;
 
   DEBUG ((DEBUG_INFO, "SdMmcPciHcDriverBindingStop: End with %r\n", Status));
 
@@ -1370,4 +1376,3 @@ SdMmcPassThruResetDevice (
 
   return EFI_SUCCESS;
 }
-

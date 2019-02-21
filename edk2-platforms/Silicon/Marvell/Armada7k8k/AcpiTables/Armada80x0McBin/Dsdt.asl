@@ -166,7 +166,6 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "MVEBU ", "ARMADA8K", 3)
         Device (COM1)
         {
             Name (_HID, "HISI0031")                             // _HID: Hardware ID
-            Name (_CID, "8250dw")                               // _CID: Compatible ID
             Name (_ADR, FixedPcdGet64(PcdSerialRegisterBase))   // _ADR: Address
             Name (_CRS, ResourceTemplate ()                     // _CRS: Current Resource Settings
             {
@@ -467,13 +466,6 @@ DefinitionBlock ("DSDT.aml", "DSDT", 2, "MVEBU ", "ARMADA8K", 3)
                         7   // End bit of the field to use.
                       }
                     })
-                  }
-
-                  //
-                  // Function 3: Return Vendor-specific Token ID Strings.
-                  //
-                  case(3) {
-                    Return (Package(0) {})
                   }
 
                   //
